@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lesson{% endblock %}
+
+{% block body %}
+    <h1>{{ lesson.title }}</h1>
+
+   <h3>
+       <p>Курс:
+           <a href="{{ path('app_course_show', {'id': lesson.cours.id}) }}">{{ lesson.cours.title }}</a>
+       </p>
+   </h3>
+    <h4>
+        {{lesson.content }}
+    </h4>
+
+    <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">Редактировать</a>
+
+    {{ include('lesson/_delete_form.html.twig') }}
+{% endblock %}

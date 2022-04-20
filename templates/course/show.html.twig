@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Course{% endblock %}
+
+{% block body %}
+    <h1>Course</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Title</th>
+                <td>{{ course.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ course.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>Список уроков:</h2>
+                    <ol>
+                    {% for lesson in course.lessons|sort((a,b)=> a.number <=> b.number) %}
+                        <li><a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">{{ lesson.title }}</a></li>
+                        {% else %}
+                            <h4>Нет уроков</h4>
+                    {% endfor %}
+                    </ol>
+
+
+    <a href="{{ path('app_course_index') }}">Вернуться к списку</a>
+
+    <a href="{{ path('app_course_edit', {'id': course.id}) }}">Редактировать</a>
+
+    <a href="{{ path('app_lesson_new', {'course': course.id}) }}">Добавить урок</a>
+
+    {{ include('course/_delete_form.html.twig') }}
+{% endblock %}

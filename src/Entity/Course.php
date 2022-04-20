@@ -6,17 +6,14 @@ use App\Repository\CourseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=CourseRepository::class)
  * @UniqueEntity(
- *     fields={"characterСode"},
- *     errorPath="characterСode",
+ *     fields={"characterCode"},
  *     message="This character code is already in use on that couse."
  * )
- */
-/**
- * @ORM\Entity(repositoryClass=CourseRepository::class)
  */
 class Course
 {
