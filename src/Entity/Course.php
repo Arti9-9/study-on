@@ -43,7 +43,7 @@ class Course
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="cours")
+     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="cours", cascade={"persist"})
      */
     private $lessons;
 
