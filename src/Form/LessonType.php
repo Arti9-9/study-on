@@ -50,9 +50,9 @@ class LessonType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('cours', HiddenType::class);
+            ->add('course', HiddenType::class);
 
-        $builder->get('cours')
+        $builder->get('course')
             ->addModelTransformer($this->transformer);
 
     }

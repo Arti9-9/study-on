@@ -21,7 +21,7 @@ class Lesson
      * @ORM\ManyToOne(targetEntity=Course::class, inversedBy="lessons")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $cours;
+    private $course;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -43,14 +43,14 @@ class Lesson
         return $this->id;
     }
 
-    public function getCours(): ?Course
+    public function getCourse(): ?Course
     {
-        return $this->cours;
+        return $this->course;
     }
 
-    public function setCours(?Course $cours): self
+    public function setCourse(?Course $course): self
     {
-        $this->cours = $cours;
+        $this->course = $course;
 
         return $this;
     }

@@ -35,12 +35,12 @@ class Course
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="string", length=1000, nullable="true")
      */
     private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="cours", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Lesson::class, mappedBy="course", cascade={"persist"}, orphanRemoval="true")
      */
     private $lessons;
 
@@ -102,7 +102,7 @@ class Course
     {
         if (!$this->lessons->contains($lesson)) {
             $this->lessons[] = $lesson;
-            $lesson->setCours($this);
+            $lesson->setCourse($this);
         }
 
         return $this;
@@ -112,8 +112,8 @@ class Course
     {
         if ($this->lessons->removeElement($lesson)) {
             // set the owning side to null (unless already changed)
-            if ($lesson->getCours() === $this) {
-                $lesson->setCours(null);
+            if ($lesson->getCourse() === $this) {
+                $lesson->setCourse(null);
             }
         }
 

@@ -16,15 +16,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class LessonController extends AbstractController
 {
-    /**
-     * @Route("/", name="app_lesson_index", methods={"GET"})
-     */
-    public function index(LessonRepository $lessonRepository): Response
-    {
-        return $this->render('lesson/index.html.twig', [
-            'lessons' => $lessonRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/new/{course}", name="app_lesson_new", methods={"GET", "POST"})
@@ -32,7 +23,7 @@ class LessonController extends AbstractController
     public function new(Request $request, LessonRepository $lessonRepository, Course  $course): Response
     {
         $lesson = new Lesson();
-        $lesson->setCours($course);
+        $lesson->setCourse($course);
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
 
@@ -82,7 +73,7 @@ class LessonController extends AbstractController
      */
     public function delete(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
-        $courseId = $lesson->getCours()->getId();
+        $courseId = $lesson->getCourse()->getId();
         if ($this->isCsrfTokenValid('delete'.$lesson->getId(), $request->request->get('_token'))) {
             $lessonRepository->remove($lesson);
         }

@@ -48,7 +48,7 @@ class LessonRepository extends ServiceEntityRepository
     public function findByCourse($course)
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.cours = :course')
+            ->andWhere('l.course = :course')
             ->setParameter('course', $course)
             ->orderBy('l.number', 'ASC')
             ->getQuery()
