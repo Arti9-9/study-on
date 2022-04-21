@@ -7,5 +7,7 @@
 
     {{ include('lesson/_form.html.twig') }}
 
-    <a href="{{ path('app_lesson_index') }}">back to list</a>
+    <p>Курс:
+        <a href="{{ path('app_course_show', {'id': lesson.cours.id}) }}">{{ lesson.cours.title }}</a>
+    </p>
 {% endblock %}

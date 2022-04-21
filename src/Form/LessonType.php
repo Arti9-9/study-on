@@ -23,11 +23,18 @@ class LessonType extends AbstractType
     {
         $this->transformer = $transformer;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('title', TextType::class, [
                 'label' => 'Название',
+                'constraints' => [
+                    new Length([
+                        'max' => 255,
+                        'maxMessage' => 'Превышено максималльное значение символов',
+                    ]),
+                ],
 
             ])
             ->add('content', TextareaType::class, [
@@ -35,11 +42,17 @@ class LessonType extends AbstractType
             ])
             ->add('number', NumberType::class, [
                 'label' => 'Порядковый номер',
-
+                'constraints' => [
+                    new Range([
+                        'notInRangeMessage' => 'Значение поля должно быть в пределах от {{ min }} до {{ max }}',
+                        'min' => 1,
+                        'max' => 10000,
+                    ]),
+                ],
             ])
-            ->add('course', HiddenType::class);
+            ->add('cours', HiddenType::class);
 
-        $builder->get('course')
+        $builder->get('cours')
             ->addModelTransformer($this->transformer);
 
     }
@@ -48,6 +61,7 @@ class LessonType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Lesson::class,
+            'course' => null,
         ]);
     }
 }
