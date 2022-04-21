@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Course;
 use App\Form\CourseType;
 use App\Repository\CourseRepository;
+use App\Repository\LessonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,10 +49,12 @@ class CourseController extends AbstractController
     /**
      * @Route("/{id}", name="app_course_show", methods={"GET"})
      */
-    public function show(Course $course): Response
+    public function show(Course $course, LessonRepository $lessonRepository): Response
     {
+        $lessons = $lessonRepository->findByCourse($course);
         return $this->render('course/show.html.twig', [
             'course' => $course,
+            'lessons'=> $lessons,
         ]);
     }
 
