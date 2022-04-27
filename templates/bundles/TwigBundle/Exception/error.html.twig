@@ -1,0 +1,13 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1>Ошибка {{status_code}}</h1>
+
+        <p class = "fs-3">
+            {{status_text}}
+            <a href="{{ path('app_course_index') }}">вернуться на главную</a>
+        </p>
+    </div>
+{% endblock %}

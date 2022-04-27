@@ -3,13 +3,17 @@
 {% block title %}Edit Lesson{% endblock %}
 
 {% block body %}
-    <h1>Edit Lesson</h1>
+    <div class="container-fluid">
 
-    {{ include('lesson/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <p>Курс:
-        <a href="{{ path('app_course_show', {'id': lesson.course.id}) }}">{{ lesson.course.title }}</a>
-    </p>
-
-    {{ include('lesson/_delete_form.html.twig') }}
+        <h1>{{ lesson.title }}</h1>
+        <p class="fs-5 ">Курс:
+            <a href="{{ path('app_course_show', {'id': lesson.course.id}) }}">{{ lesson.course.title }}</a>
+        </p>
+        <div class="mb-3 border-bottom border-secondary">
+            <div class="mb-3">
+                {{ include('lesson/_form.html.twig', {'button_label': 'Сохранить'}) }}
+            </div>
+        </div>
+        {{ include('lesson/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

@@ -52,7 +52,7 @@ class CourseType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Course::class,
+                'data_class' => Course::class,
         ]);
     }
 }
