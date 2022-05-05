@@ -10,7 +10,8 @@
         <h2 class="mt-4">Список уроков:</h2>
         <ol>
             {% for lesson in lessons %}
-                <li><a class="fs-5" href="{{ path('app_lesson_show', {'id': lesson.id}) }}">{{ lesson.title }}</a></li>
+                <li><a class="fs-5 lesson-link"
+                       href="{{ path('app_lesson_show', {'id': lesson.id}) }}">{{ lesson.title }}</a></li>
             {% else %}
                 <h4>Нет уроков</h4>
             {% endfor %}
@@ -27,7 +28,7 @@
                     {{ include('course/_delete_form.html.twig') }}
                 </div>
                 <div class="col">
-                    <a class="btn btn-outline-dark" href="{{ path('app_lesson_new', {'course': course.id}) }}">Добавить
+                    <a class="btn btn-outline-dark lesson-new" href="{{ path('app_lesson_new', {'course': course.id}) }}">Добавить
                         урок</a>
                 </div>
             </div>

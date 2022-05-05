@@ -55,6 +55,9 @@ class LessonType extends AbstractType
                         'min' => 1,
                         'max' => 10000,
                     ]),
+                    new NotBlank([
+                        'message' => 'Поле не может быть пустым',
+                    ]),
                 ],
             ])
             ->add('course', HiddenType::class);
