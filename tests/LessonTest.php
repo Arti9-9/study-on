@@ -18,6 +18,7 @@ class LessonTest extends AbstractTest
     {
         return $this->startingPathCourse;
     }
+
     // Метод вызова старовой страницы уроков
     public function getPathLesson(): string
     {

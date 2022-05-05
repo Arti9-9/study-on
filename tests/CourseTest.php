@@ -23,6 +23,7 @@ class CourseTest extends AbstractTest
     }
 
     // Проверка на корректный http-статус для всех GET/POST методов, по всем существующим курсам
+
     /**
      * @dataProvider urlProviderSuccessful
      * @param $url
@@ -43,22 +44,22 @@ class CourseTest extends AbstractTest
     public function testPageSpecificCourseIsSuccessful(): void
     {
         $em = self::getEntityManager();
-        $courses = $em->getRepository(Course::class)->findAll();
-        self::assertNotEmpty($courses);
+        $course = $em->getRepository(Course::class)->findOneBy([]);
+        self::assertNotEmpty($course);
 
         // с помощью полученных курсов проходим все возможные страницы GET/POST связанных с курсом
-        foreach ($courses as $course) {
-            self::getClient()->request('GET', $this->getPath() . '/' . $course->getId());
-            $this->assertResponseOk();
 
-            self::getClient()->request('GET', $this->getPath() . '/' . $course->getId() . '/edit');
-            $this->assertResponseOk();
+        self::getClient()->request('GET', $this->getPath() . '/' . $course->getId());
+        $this->assertResponseOk();
 
-            self::getClient()->request('POST', $this->getPath() . '/' . $course->getId() . '/edit');
-            $this->assertResponseOk();
-        }
+        self::getClient()->request('GET', $this->getPath() . '/' . $course->getId() . '/edit');
+        $this->assertResponseOk();
+
+        self::getClient()->request('POST', $this->getPath() . '/' . $course->getId() . '/edit');
+        $this->assertResponseOk();
     }
     // Пример проверки 404 ошибки, переход на несуществующие страницы
+
     /**
      * @dataProvider urlProviderNotFound
      * @param $url
