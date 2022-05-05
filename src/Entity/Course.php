@@ -12,7 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass=CourseRepository::class)
  * @UniqueEntity(
  *     fields={"characterCode"},
- *     message="This character code is already in use on that couse."
+ *     message="Это код уже используется для другого курса."
  * )
  */
 class Course

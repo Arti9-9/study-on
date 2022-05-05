@@ -25,6 +25,9 @@ class CourseType extends AbstractType
                         'max' => 255,
                         'maxMessage' => 'Превышено максималльное значение символов',
                     ]),
+                    new NotBlank([
+                        'message' => 'Поле не может быть пустым',
+                    ]),
                 ],
             ])
             ->add('title', TextType::class, [
@@ -33,6 +36,9 @@ class CourseType extends AbstractType
                     new Length([
                         'max' => 255,
                         'maxMessage' => 'Превышено максималльное значение символов',
+                    ]),
+                    new NotBlank([
+                        'message' => 'Поле не может быть пустым',
                     ]),
                 ],
             ])

@@ -34,11 +34,18 @@ class LessonType extends AbstractType
                         'max' => 255,
                         'maxMessage' => 'Превышено максималльное значение символов',
                     ]),
+                    new NotBlank([
+                        'message' => 'Поле не может быть пустым',
+                        ]),
                 ],
-
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Контент',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Поле не может быть пустым',
+                    ]),
+                ],
             ])
             ->add('number', NumberType::class, [
                 'label' => 'Порядковый номер',
