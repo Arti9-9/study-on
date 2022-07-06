@@ -21,6 +21,8 @@
                 <div class="col">
                     <a class="btn btn-outline-dark" href="{{ path('app_course_index') }}">Вернуться к списку</a>
                 </div>
+
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <div class="col">
                     <a class="course-edit btn btn-outline-dark" href="{{ path('app_course_edit', {'id': course.id}) }}">Редактировать</a>
                 </div>
@@ -31,6 +33,7 @@
                     <a class="btn btn-outline-dark lesson-new" href="{{ path('app_lesson_new', {'course': course.id}) }}">Добавить
                         урок</a>
                 </div>
+                {% endif %}
             </div>
         </div>
 

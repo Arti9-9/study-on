@@ -3,10 +3,10 @@
 {% block title %}Список курсов{% endblock %}
 
 {% block body %}
-    <h1>Список курсов</h1>
-    <div class="container-fluid mt-3">
-        <div class=" row">
-            {% for course in courses %}
+<h1>Список курсов</h1>
+<div class="container-fluid mt-3">
+    <div class=" row">
+        {% for course in courses %}
             <div class="col-sm-6 my-md-2">
                 <div class="card">
                     <div class="card-body">
@@ -23,6 +23,7 @@
 
         {% endfor %}
     </div>
-
-    <a  class = "btn btn-secondary course-new" href="{{ path('app_course_new') }}">Создать новый курс</a>
-{% endblock %}
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        <a class="btn btn-secondary course-new" href="{{ path('app_course_new') }}">Создать новый курс</a>
+    {% endif %}
+    {% endblock %}

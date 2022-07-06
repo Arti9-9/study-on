@@ -15,7 +15,18 @@
     {% endblock %}
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-           <h3>Study-on</h3>
+            <h3>Study-on</h3>
+            <div>
+                <a href="{{ path('app_course_index') }}">Курсы</a>
+                {% if app.user %}
+                    <a href="{{ path('app_profile') }}">Профиль</a>
+                    <a href="{{ path('app_logout') }}">Выход</a>
+                {% else %}
+                    <a href="{{ path('app_register') }}">Зарегестрироваться</a>
+                    <a href="{{ path('app_login') }}">Войти</a>
+                {% endif %}
+
+            </div>
         </div>
     </nav>
 </head>
