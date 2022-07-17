@@ -35,15 +35,7 @@ security:
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
         - { path: ^/register, roles: PUBLIC_ACCESS }
-        - { path: ^/courses/$, roles: PUBLIC_ACCESS }
-        - { path: ^/$, roles: PUBLIC_ACCESS }
-        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/profile, roles: [ IS_AUTHENTICATED_FULLY ] }
-        - { path: ^/lessons/\d+$, roles: ROLE_USER }
-        - { path: ^/(courses|lessons)/\d+/edit$, roles: [ ROLE_SUPER_ADMIN ] }
-        - { path: ^/lessons/new/\d+$, roles: [ ROLE_SUPER_ADMIN ] }
-        - { path: ^/(courses|lessons)/\d+$, methods: [ POST ], roles: [ ROLE_SUPER_ADMIN ] }
-        - { path: ^/courses/new$, roles: [ ROLE_SUPER_ADMIN ] }
+
 
 when@test:
     security:

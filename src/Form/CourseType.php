@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Course;
 use Symfony\Component\DomCrawler\Field\TextareaFormField;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -52,13 +54,37 @@ class CourseType extends AbstractType
                     ]),
                 ],
 
+            ])
+            ->add('price', MoneyType::class, [
+                'label' => 'Цена',
+                'data' => $options['price'],
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank(),
+                ],
+                'currency' => 'rub',
+            ])
+            ->add('type', ChoiceType::class, [
+                'label' => 'Тип курса',
+                'mapped' => false,
+                'data' => $options['type'],
+                'constraints' => [
+                    new NotBlank(),
+                ],
+                'choices' => [
+                    'Бесплатный' => 'free',
+                    'Аренда' => 'rent',
+                    'Покупка' => 'buy'
+                ]
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-                'data_class' => Course::class,
+            'data_class' => Course::class,
+            'price' => 0.0,
+            'type' => 'rent'
         ]);
     }
 }

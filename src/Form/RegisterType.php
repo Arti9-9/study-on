@@ -25,6 +25,7 @@ class RegisterType extends AbstractType
                 ]
             ])
             ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
                 'first_name' => 'password',
                 'second_name' => 'password_repeat',
                 'first_options' => [

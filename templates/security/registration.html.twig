@@ -1,18 +1,22 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
+{% block title %}Регистрация/StudyOn{% endblock %}
 
 {% block body %}
-    {% if errors %}
-        {% for key, error in errors %}
-            {% for message in error %}
-                <div class="alert alert-danger">{{ message }}</div>
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
+    <div class="container-fluid my-2 mx-10">
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-success">{{ button_label|default('Зарегистрироваться') }}</button>
-    {{ form_end(form) }}
+        <h3>Регистрация</h3>
+
+        {% if errors is defined %}
+            <div class="alert alert-danger">
+                <p class="m-0"> {{ errors }}</p>
+            </div>
+        {% endif %}
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-outline-primary my-2" type="submit">
+            Зарегистрироваться
+        </button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
